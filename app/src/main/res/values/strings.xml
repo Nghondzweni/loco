@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Loco</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="places_api_key">AIzaSyBjK8UgUjO1MVbBQzVg4E80g5UsPibe-lE</string>
-    <string name="error_api_key">error bad API KEY</string>
-</resources>
