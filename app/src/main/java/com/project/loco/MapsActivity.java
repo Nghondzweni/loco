@@ -260,7 +260,7 @@ public class MapsActivity extends FragmentActivity implements
         Geocoder geocoder = new Geocoder(MapsActivity.this);
         List<Address> list = new ArrayList<>();
         try{
-           list = geocoder.getFromLocationName(searchString, 1);
+            list = geocoder.getFromLocationName(searchString, 1);
         }
         catch (IOException e){
             Log.e(TAG, "geoLocate: IOException: " + e.getMessage());

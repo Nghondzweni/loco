@@ -32,16 +32,18 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBjK8UgUjO1MVbBQzVg4E80g5UsPibe-lE" />
-        <activity android:name=".MainActivity"/>
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps">
+        </activity>
+        <activity android:name=".DatabaseViewer"/>
     </application>
 
 </manifest>
