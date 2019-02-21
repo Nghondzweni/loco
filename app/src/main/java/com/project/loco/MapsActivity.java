@@ -67,7 +67,7 @@ public class MapsActivity extends FragmentActivity implements
     private static final LatLngBounds  LAT_LNG_BOUNDS = new LatLngBounds(new LatLng(-40, -168),new LatLng(71, 136));
 
     //Threads && Handlers
-    private Worker worker;
+//    private Worker worker;
     private Handler handler;
 
     //views
