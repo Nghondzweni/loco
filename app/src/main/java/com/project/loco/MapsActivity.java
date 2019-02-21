@@ -1,6 +1,7 @@
 package com.project.loco;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
@@ -30,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -85,6 +87,8 @@ public class MapsActivity extends FragmentActivity implements
 
     //vars
     private boolean mLocationPermissionGranted = false;
+    private LocationViewModel locationViewModel;
+
 
     //objects
     private List<LocationData> locations = new ArrayList<>();
@@ -142,7 +146,7 @@ public class MapsActivity extends FragmentActivity implements
 
     }
 
-    public List<LocationData> savePins(){
+    public void savePins(){
         LocationData loco = new LocationData();
         loco.setLatitude(mMarker.getPosition().latitude);
         loco.setLongitude(mMarker.getPosition().longitude);
@@ -152,15 +156,29 @@ public class MapsActivity extends FragmentActivity implements
         locations.add(loco);
         for(LocationData l : locations){
             Log.d(TAG, "NEW LOCATION! : " + locations.toString());
+            addLocoLocation(l);
         }
-        return locations;
+    }
+
+    private void addLocoLocation(LocationData data){
+        String latitude = Double.toString(data.getLatitude());
+        String longitude = Double.toString(data.getLatitude());
+        String name = data.getTitle();
+        LocoLocation location = new LocoLocation(name,latitude,longitude);
+        locationViewModel.insert(location);
+    }
+
+    public void showDatabase(View view){
+        Log.d(TAG, "show database called");
+        Intent intent = new Intent(this, DatabaseViewer.class);
+        startActivity(intent);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
+        locationViewModel = ViewModelProviders.of(this).get(LocationViewModel.class);
         //Views
         auto = findViewById(R.id.input_search);
         t = findViewById(R.id.hint);
